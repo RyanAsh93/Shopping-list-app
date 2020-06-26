@@ -17,7 +17,7 @@ class Home extends React.Component {
         <Container>
           <p align='center'>
             <iframe 
-            src="http://free.timeanddate.com/clock/i7cgnf2u/n220/tt0/tw0" 
+            src="http://free.timeanddate.com/clock/i7cgnf2u/n220/tt0/tw0"   // working clock
             frameborder="0" 
             width="260"
             height="18" 

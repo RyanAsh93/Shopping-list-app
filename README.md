@@ -13,7 +13,7 @@
 
 1. cd ProjectName
 2. run bundle
-3. in config/database yml replace database name to something else
+3. in config/database yml replace database name to whatever you called the new project
 4. in this case that would be starter_setup_...
 5. rails db:create db:migrate db:seed
 6. rails s -p 3001
