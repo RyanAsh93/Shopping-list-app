@@ -25,3 +25,8 @@
 2.run yarn
 3.run yarn start
 4.open http://localhost:3000 (make sure rails is on port 3001)
+
+
+**Notes**
+
+1.clock resource https://www.timeanddate.com/clocks/free.html

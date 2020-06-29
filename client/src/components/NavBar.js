@@ -34,6 +34,13 @@ class Navbar extends React.Component {
               active={location.pathname === '/register'}
             />
           </Link>
+          <Link to='/Instructions' position='left'>
+            <Menu.Item
+              id='Instructions'
+              name='Instructions'
+              active={location.pathname === '/Instructions'}
+            />
+          </Link>
         </Menu.Menu>
       )
     }
@@ -70,4 +77,3 @@ export class ConnectedNavbar extends React.Component {
 }
 
 export default withRouter(ConnectedNavbar);
-

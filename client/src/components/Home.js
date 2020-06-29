@@ -1,21 +1,54 @@
 import React from 'react'
-import { Header, Container, Segment, Form, Input, List } from 'semantic-ui-react'
+import { Button, Header, Container, Segment, Form, Input, List, Icon } from 'semantic-ui-react'
+import Axios from 'axios';
 
 class Home extends React.Component {
     state = { name: '', items: [] };
 
+    componentDidMount() {
+      Axios.get('/api/items')
+        .then( ({ data: items }) => this.setState({ items }))
+    }
+
     handleSubmit = (e) => {
       e.preventDefault();
       const { name, items } = this.state;
-      this.setState({ items: [name, ...items], name: ''})
+      Axios.post('/api/items', { name })
+        .then( ({ data }) => {
+      this.setState({ items: [data, ...items], name: ''})
+        })
     };
 
+    updateItem = id => {
+      Axios.put(`/api/items/${id}`)
+        .then( ({ data }) => {
+          const items = this.state.items.map( item => {
+            if (item.id === id)
+              return data
+              return item
+          })
+          this.setState({ items })
+        })
+    }
+
+    deleteItem = id => {
+      Axios.delete(`/api/items/${id}`)
+        .then(({ data }) => {
+          const items = this.state.items.filter( item => {
+            if (item.id ===id )
+            return data
+            return item
+          })
+          this.setState({items})
+        })
+    }
 
     render() {
       const { name, items } = this.state;
       return (
         <Container>
           <p align='center'>
+            <br />
             <iframe 
             src="http://free.timeanddate.com/clock/i7cgnf2u/n220/tt0/tw0"   // working clock
             frameborder="0" 
@@ -27,19 +60,42 @@ class Home extends React.Component {
           <Segment textAlign='center'>
             <Header as='h1' textAlign='center'>Shopping List Home Page</Header>
             <Form onSubmit={this.handleSubmit}>
-              <Input 
+              <Input
                 required
                 value={name}
                 onChange={ e => this.setState({ name: e.target.value })}
               />
             </Form>
             <List>
-              { items.map( (t,i) => <List.Item key={i}>{t}</List.Item>)}
+              { items.map(item  => 
+              <List.Item 
+              key={item.id}
+              style={item.complete ? styles.complete : {} }
+              onClick={() => this.updateItem(item.id)}
+              >
+              {item.name}
+              {' '}
+              <Button 
+              class="trash icon"
+              size='mini'
+              color='red'
+              icon basic onClick={() => this.deleteItem(item.id)}
+              >
+               <Icon name="trash icon" />
+              </Button>
+              </List.Item>)}
             </List>
           </Segment>
         </Container>
       )
     }
 }
+
+  const styles = {
+      complete: {
+      textDecoration: 'line-through',
+      color: 'grey',
+    }
+  }
 
 export default Home;
