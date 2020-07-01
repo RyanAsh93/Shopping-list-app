@@ -58,17 +58,24 @@ class Home extends React.Component {
             </iframe>
             </p>
           <Segment textAlign='center'>
-            <Header as='h1' textAlign='center'>Shopping List Home Page</Header>
+            <Header as='h1' textAlign='center'>Shopping List</Header>
             <Form onSubmit={this.handleSubmit}>
               <Input
                 required
                 value={name}
                 onChange={ e => this.setState({ name: e.target.value })}
               />
+                <Button 
+                color='blue'
+                icon basic onClick={() => this.updateItem}
+                >
+                Add Item
+                </Button>
             </Form>
-            <List>
+            <List.Item>
               { items.map(item  => 
               <List.Item 
+              as='li'
               key={item.id}
               style={item.complete ? styles.complete : {} }
               onClick={() => this.updateItem(item.id)}
@@ -84,11 +91,13 @@ class Home extends React.Component {
                <Icon name="trash icon" />
               </Button>
               </List.Item>)}
-            </List>
+            </List.Item>
           </Segment>
         </Container>
       )
     }
+      
+    
 }
 
   const styles = {
