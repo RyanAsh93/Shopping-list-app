@@ -21,6 +21,7 @@ class Login extends React.Component {
   
     return (
       <Segment basic>
+        <Header as='h1' textAlign='center'>Pocket Shopping List</Header>
         <Header as='h1' textAlign='center'>Login</Header>
         <Form onSubmit={this.handleSubmit}>
           <Form.Input

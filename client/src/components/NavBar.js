@@ -15,6 +15,13 @@ class Navbar extends React.Component {
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
           />
+          {/* <Link to='/ShoppingList'>
+                <Menu.Item 
+                  name='ShoppingList'
+                  id='ShoppingList'
+                  active={location.pathname === '/ShoppingList'}
+                />
+              </Link> */}
         </Menu.Menu>
       )
     } else {
@@ -48,7 +55,13 @@ class Navbar extends React.Component {
   
   render() {
     return (
-      <div>
+        <div style={{
+    // backgroundImage: `url(${paperbackground})`,
+    backgroundSize: 'cover',
+    overflow: 'hidden',
+    backgroundColor: 'white',
+    }}
+      >
         <Menu pointing secondary>
           <Link to='/'>
             <Menu.Item

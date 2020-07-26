@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Header, Container, Segment, Form, Input, List, Icon } from 'semantic-ui-react'
 import Axios from 'axios';
-import paperbackground from './paperbackground.png'
+import { Link } from 'react-router-dom'
 
 class Home extends React.Component {
     state = { name: '', items: [] };
@@ -58,8 +58,8 @@ class Home extends React.Component {
             >
             </iframe>
             </p>
-          <Segment color= 'mintcream' textAlign='center'>
-            <Header as='h1' textAlign='center'>Shopping List</Header>
+          <Segment textAlign='center'>
+            <Header as='h1' textAlign='center'>List</Header>
             <Form onSubmit={this.handleSubmit}>
               <Input
                 required
@@ -77,8 +77,8 @@ class Home extends React.Component {
             <List.Item>
               { items.map(item  => 
               <List.Item 
-              textAlign='center'
               as='h3'
+              as={Link}
               key={item.id}
               style={item.complete ? styles.complete : {} }
               onClick={() => this.updateItem(item.id)}
